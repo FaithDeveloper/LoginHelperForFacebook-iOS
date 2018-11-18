@@ -59,8 +59,23 @@ class ViewController: UIViewController, KFBInfoDelegate{
             print("[LoginModule] email = \(facebookEmail)")
             print("[LoginModule] id = \(facebookId)")
             print("[LoginModule] name = \( dict["name"] as! String)")
+            showAlert(viewController: self, title: "Info", msg: "Welcome \( dict["name"] as! String)") { (action) in
+                
+            }
         }
     }
     
+    // MARK: 다이얼로그 관련 모듈
+    //Alert Dialog
+   func showAlert(viewController: UIViewController?,title: String, msg: String, handler: ((UIAlertAction) -> Swift.Void)?){
+        
+        
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: handler)
+        alertController.addAction(defaultAction)
+        
+        viewController?.present(alertController, animated: true, completion: nil)
+    }
 }
 
